@@ -8,6 +8,9 @@ const bcrypt = require('bcrypt');
 router.get('/register', (req, res) => {
   res.render('registration'); // Make sure 'registration.ejs' is in your 'views' folder
 });
+router.get('/login', (req, res) => {
+  res.render('login'); // Make sure 'login.ejs' is in your 'views' folder
+})
 
  
 router.post('/register', async (req, res) => {
@@ -25,7 +28,7 @@ router.post('/login', (req, res) => {
       if (err) throw err;
       if (results.length > 0 && await bcrypt.compare(password, results[0].password)) {
         req.session.user = results[0];
-        res.redirect('/');
+        res.redirect('/dashboard');
       } else {
         res.send('Invalid email or password');
       }
