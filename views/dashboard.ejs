@@ -12,7 +12,8 @@
   </nav>
 
   <div class="dashboard-container">
-    <h2>Welcome, <%= user.username %>!</h2>
+    <h2>Welcome, <%= user ? user.username : 'Guest' %>!</h2>
+
     <h3>Your Events</h3>
     <ul>
       <% userEvents.forEach(event => { %>

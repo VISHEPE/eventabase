@@ -28,7 +28,7 @@ router.post('/login', (req, res) => {
       if (err) throw err;
       if (results.length > 0 && await bcrypt.compare(password, results[0].password)) {
         req.session.user = results[0];
-        console.log('Logged in user:', req.session.user);
+       
         res.redirect('/dashboard');
       } else {
         res.send('Invalid email or password');
