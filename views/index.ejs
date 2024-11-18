@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EventEase - Home</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="logo">EventEase</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/events">Events</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="search-container">
+    <form action="/" method="GET">
+      <input type="text" name="search" placeholder="Search for events..." value="<%= searchQuery %>">
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  <div class="events-container">
+    <h2>Upcoming Events</h2>
+    <div class="events-list">
+      <% events.forEach(event => { %>
+        <div class="event-card">
+          <h3><%= event.title %></h3>
+          <p><%= event.description %></p>
+          <p><strong>Date:</strong> <%= event.date %></p>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+  <div class="pagination">
+    <% if (currentPage > 1) { %>
+      <a href="/?page=<%= currentPage - 1 %>&search=<%= searchQuery %>">Previous</a>
+    <% } %>
+    <% if (currentPage < totalPages) { %>
+      <a href="/?page=<%= currentPage + 1 %>&search=<%= searchQuery %>">Next</a>
+    <% } %>
+  </div>
+</body>
+</html>

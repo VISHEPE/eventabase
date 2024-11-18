@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Event - EventEase</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    
+  </nav>
+
+  <div class="create-event-container">
+    <h2>Create New Event</h2>
+    <form action="/events/create" method="POST">
+      <input type="text" name="title" placeholder="Event Title" required>
+      <textarea name="description" placeholder="Event Description" required></textarea>
+      <input type="date" name="date" required>
+      <input type="text" name="location" placeholder="Location" required>
+      <select name="category" required>
+        <option value="Music">Music</option>
+        <option value="Technology">Technology</option>
+        <option value="Sports">Sports</option>
+        
+      </select>
+      <button type="submit">Create Event</button>
+    </form>
+  </div>
+</body>
+</html>

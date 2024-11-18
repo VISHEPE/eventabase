@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= event.title %> - EventEase</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+  </nav>
+
+  <div class="event-details-container">
+    <h2><%= event.title %></h2>
+    <p><%= event.description %></p>
+    <p><strong>Date:</strong> <%= event.date %></p>
+    <p><strong>Location:</strong> <%= event.location %></p>
+    <p><strong>Category:</strong> <%= event.category %></p>
+    <a href="/events/book/<%= event.id %>" class="btn">Book Now</a>
+  </div>
+</body>
+</html>

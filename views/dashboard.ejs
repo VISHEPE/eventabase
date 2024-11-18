@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - EventEase</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    
+  </nav>
+
+  <div class="dashboard-container">
+    <h2>Welcome, <%= user.username %>!</h2>
+    <h3>Your Events</h3>
+    <ul>
+      <% userEvents.forEach(event => { %>
+        <li><%= event.title %> - <a href="/events/details/<%= event.id %>">View</a></li>
+      <% }); %>
+    </ul>
+
+    <h3>Your Bookings</h3>
+    <ul>
+      <% userBookings.forEach(booking => { %>
+        <li><%= booking.title %> - <a href="/events/details/<%= booking.event_id %>">View</a></li>
+      <% }); %>
+    </ul>
+  </div>
+</body>
+</html>
