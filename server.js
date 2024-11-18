@@ -16,11 +16,10 @@ const PORT = process.env.PORT || 3000;
 dotenv.config();
 
 app.use(session({
-  secret: '12345678@', // Choose a secret key for your session
+  secret: 'your-secret-key', // Use your own secret key
   resave: false,
-  saveUninitialized: true
-}));
-
+  saveUninitialized: true,
+}))
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

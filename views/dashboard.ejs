@@ -7,12 +7,18 @@
 </head>
 <body>
   <nav class="navbar">
-    <!-- Add a link to the Create Event page here -->
     <a href="/events/create">Create Event</a>
   </nav>
 
   <div class="dashboard-container">
     <h2>Welcome, <%= user ? user.username : 'Guest' %>!</h2>
+
+    <!-- Display success message if it exists -->
+    <% if (successMessage) { %>
+      <div class="success-message">
+        <%= successMessage %>
+      </div>
+    <% } %>
 
     <h3>Your Events</h3>
     <ul>

@@ -22,13 +22,15 @@ router.post('/register', async (req, res) => {
     });
   });
   
-router.post('/login', (req, res) => {
+  router.post('/login', (req, res) => {
     const { email, password } = req.body;
     db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
       if (err) throw err;
       if (results.length > 0 && await bcrypt.compare(password, results[0].password)) {
-        req.session.user = results[0];
-       
+        req.session.user = results[0];  // Set session user
+  
+        console.log('User logged in:', req.session.user); // Log the session user for debugging
+  
         res.redirect('/dashboard');
       } else {
         res.send('Invalid email or password');
