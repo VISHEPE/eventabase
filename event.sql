@@ -20,3 +20,8 @@ CREATE TABLE bookings (
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+ALTER TABLE events
+ADD COLUMN location VARCHAR(255) NULL,
+ADD COLUMN category VARCHAR(100) NULL;
+
+
