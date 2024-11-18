@@ -22,4 +22,4 @@ router.get('/dashboard', (req, res) => {
   });
 });
 
-module.exports = router;  // Export the router so it can be used in server.js
+module.exports = router;  
