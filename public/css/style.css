@@ -215,3 +215,35 @@ button:hover {
     padding: 1.5rem;
   }
 }
+
+/* Dashboard Container */
+.dashboard-container {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-container h2 {
+  font-size: 2rem;
+  color: #145235; 
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-container h3 {
+  font-size: 1.6rem;
+  color: #145235;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+
+.success-message {
+  background-color: #dff0d8;
+  color: #3c763d;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+}

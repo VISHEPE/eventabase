@@ -7,7 +7,15 @@
 </head>
 <body>
   <nav class="navbar">
-    <a href="/events/create">Create Event</a>
+    <div class="container">
+      <a href="/" class="logo">EventEase</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/events/create">Create Event</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+      </ul>
+    </div>
   </nav>
 
   <div class="dashboard-container">
@@ -21,16 +29,22 @@
     <% } %>
 
     <h3>Your Events</h3>
-    <ul>
+    <ul class="events-list">
       <% userEvents.forEach(event => { %>
-        <li><%= event.title %> - <a href="/events/details/<%= event.id %>">View</a></li>
+        <li class="event-item">
+          <strong><%= event.title %></strong> - 
+          <a href="/events/details/<%= event.id %>" class="view-link">View</a>
+        </li>
       <% }); %>
     </ul>
 
     <h3>Your Bookings</h3>
-    <ul>
+    <ul class="bookings-list">
       <% userBookings.forEach(booking => { %>
-        <li><%= booking.title %> - <a href="/events/details/<%= booking.event_id %>">View</a></li>
+        <li class="booking-item">
+          <strong><%= booking.title %></strong> - 
+          <a href="/events/details/<%= booking.event_id %>" class="view-link">View</a>
+        </li>
       <% }); %>
     </ul>
   </div>
