@@ -35,6 +35,7 @@
           <p><strong>Date:</strong> <%= event.date %></p>
           <p><strong>Location:</strong> <%= event.location %></p>
           <p><strong>Category:</strong> <%= event.category %></p>
+          <a href="/events/<%= event.id %>/book" class="btn-book">Book Event</a>
         </div>
       <% }); %>
     </div>
