@@ -58,9 +58,9 @@ app.get('/', (req, res) => {
 
       console.log(`Total Events: ${totalItems}, Total Pages: ${totalPages}`);
 
-      // Fetch all events without search query filtering, just applying pagination
+      // Fetch events with the specified fields (title, description, date, location, category)
       db.query(
-        `SELECT * FROM events LIMIT ? OFFSET ?`,
+        `SELECT title, description, date, location, category FROM events LIMIT ? OFFSET ?`,
         [itemsPerPage, offset],
         (err, events) => {
           if (err) {
@@ -82,6 +82,7 @@ app.get('/', (req, res) => {
     }
   );
 });
+
 
 // Routes
 app.use('/', authRoutes); // Use authRoutes at the root
