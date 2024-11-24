@@ -5,7 +5,6 @@ const dotenv = require('dotenv');
 const path = require('path');
 const db = require('./db'); // Ensure this is correctly set up
 
-
 const dashboardRoutes = require('./routes/dashboard');
 const authRoutes = require('./routes/auth');
 const eventRoutes = require('./routes/events'); // Make sure this is defined
@@ -33,7 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')); 
 
-
+// Home route with search functionality and pagination
 app.get('/', (req, res) => {
   console.log("Root route accessed");
 
@@ -46,7 +45,8 @@ app.get('/', (req, res) => {
 
   // Count the total number of events (without filtering by search query)
   db.query(
-    `SELECT COUNT(*) AS total FROM events`,
+    `SELECT COUNT(*) AS total FROM events WHERE title LIKE ? OR description LIKE ?`,
+    [`%${searchQuery}%`, `%${searchQuery}%`],
     (err, countResults) => {
       if (err) {
         console.error("Error counting events:", err);
@@ -60,8 +60,8 @@ app.get('/', (req, res) => {
 
       // Fetch events with the specified fields (title, description, date, location, category)
       db.query(
-        `SELECT title, description, date, location, category FROM events LIMIT ? OFFSET ?`,
-        [itemsPerPage, offset],
+        `SELECT title, description, date, location, category FROM events WHERE title LIKE ? OR description LIKE ? LIMIT ? OFFSET ?`,
+        [`%${searchQuery}%`, `%${searchQuery}%`, itemsPerPage, offset],
         (err, events) => {
           if (err) {
             console.error("Error fetching events:", err);
@@ -83,13 +83,12 @@ app.get('/', (req, res) => {
   );
 });
 
-
 // Routes
 app.use('/', authRoutes); // Use authRoutes at the root
 app.use('/dashboard', dashboardRoutes); // Use dashboardRoutes for dashboard
 app.use('/events', eventRoutes); // Use eventRoutes for events
 
-
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
