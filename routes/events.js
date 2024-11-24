@@ -61,4 +61,24 @@ router.post('/create', (req, res) => {
   );
 });
 
+
+
+
+router.get('/events/:id/book', (req, res) => {
+  const eventId = req.params.id;
+
+  // Fetch the event details if needed
+  db.query('SELECT * FROM events WHERE id = ?', [eventId], (err, result) => {
+    if (err) throw err;
+
+    if (result.length > 0) {
+      const event = result[0];
+      res.render('book-event', { event }); // Render a booking form
+    } else {
+      res.status(404).send('Event not found');
+    }
+  });
+});
+
+
 module.exports = router;
