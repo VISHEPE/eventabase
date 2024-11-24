@@ -8,25 +8,25 @@ function isAuthenticated(req, res, next) {
   if (req.session.user) {
     return next();
   }
-  res.redirect('/login');  // Redirect to login if not authenticated
+  res.redirect('/login');  
 }
 
-// GET route to serve the registration page
+
 router.get('/register', (req, res) => {
-  // If user is already logged in, redirect to dashboard
+ 
   if (req.session.user) {
     return res.redirect('/dashboard');
   }
-  res.render('registration'); // Make sure 'registration.ejs' is in your 'views' folder
+  res.render('registration'); 
 });
 
 // GET route to serve the login page
 router.get('/login', (req, res) => {
-  // If user is already logged in, redirect to dashboard
+  
   if (req.session.user) {
     return res.redirect('/dashboard');
   }
-  res.render('login'); // Make sure 'login.ejs' is in your 'views' folder
+  res.render('login'); 
 });
 
 // POST route for registration
@@ -46,7 +46,7 @@ router.post('/register', async (req, res) => {
 
     db.query('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', [username, email, hashedPassword], (err) => {
       if (err) throw err;
-      res.redirect('/login'); // Redirect to login after successful registration
+      res.redirect('/login'); 
     });
   });
 });
@@ -59,13 +59,13 @@ router.post('/login', (req, res) => {
     if (err) throw err;
 
     if (results.length > 0 && await bcrypt.compare(password, results[0].password)) {
-      req.session.user = results[0];  // Store user data in session
+      req.session.user = results[0];  
 
-      console.log('User logged in:', req.session.user); // Log the session user for debugging
+      console.log('User logged in:', req.session.user);
 
-      res.redirect('/dashboard'); // Redirect to dashboard after successful login
+      res.redirect('/dashboard'); 
     } else {
-      res.send('Invalid email or password'); // Send an error message for invalid credentials
+      res.send('Invalid email or password'); 
     }
   });
 });
@@ -76,7 +76,7 @@ router.get('/logout', (req, res) => {
     if (err) {
       return res.send('Failed to log out');
     }
-    res.redirect('/'); // Redirect to the home page after logout
+    res.redirect('/'); 
   });
 });
 

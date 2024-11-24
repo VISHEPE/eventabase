@@ -17,12 +17,12 @@ router.get('/', (req, res) => {
       (err, userBookings) => {
         if (err) throw err;
         
-        // Pass the user object, userEvents, userBookings, and successMessage (if any)
+      
         res.render('dashboard', { 
-          user: req.session.user,  // Pass the user object
+          user: req.session.user,  
           userEvents, 
           userBookings,
-          successMessage: req.session.successMessage || null  // Pass successMessage if it exists
+          successMessage: req.session.successMessage || null  
         });
         
         // Clear the success message after it's been displayed
