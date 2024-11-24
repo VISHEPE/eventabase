@@ -63,12 +63,19 @@ router.post('/login', (req, res) => {
 
       console.log('User logged in:', req.session.user);
 
-      res.redirect('/dashboard'); 
+      req.session.save((err) => {
+        if (err) {
+          console.error('Error saving session:', err);
+          return res.send('An error occurred. Please try again.');
+        }
+        res.redirect('/dashboard'); // Redirect after session is saved
+      });
     } else {
       res.send('Invalid email or password'); 
     }
   });
 });
+
 
 // GET route for logout
 router.get('/logout', (req, res) => {

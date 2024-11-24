@@ -15,15 +15,17 @@ const PORT = process.env.PORT || 3000;
 dotenv.config();
 
 app.use(session({
-  secret: 'your-secret-key',
+  secret: '12345678@#',
   resave: false,
   saveUninitialized: true,
   cookie: {
     httpOnly: true, // Prevents JavaScript from accessing cookies
-    secure: true, // Ensures cookies are sent only over HTTPS
+    secure: false, // Ensures cookies are sent only over HTTPS
     sameSite: 'Lax' // Helps prevent third-party cookie tracking
   }
 }));
+
+
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
